@@ -1,0 +1,30 @@
+{
+  "name": "client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:all": "pnpm --filter web --filter admin --parallel dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:admin": "pnpm --filter admin dev",
+    "build": "turbo build",
+    "build:web": "pnpm --filter web build",
+    "build:admin": "pnpm --filter admin build",
+    "lint": "turbo lint",
+    "format": "turbo format",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@fontsource-variable/geist": "^5.2.8",
+    "@fontsource-variable/noto-kufi-arabic": "^5.2.9",
+    "@fontsource/cascadia-code": "^5.2.3",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "turbo": "^2.9.5",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  }
+}

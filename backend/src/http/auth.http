@@ -1,0 +1,182 @@
+### Auth Controller Tests
+
+# Variables
+@baseUrl = http://localhost:5000
+@accessToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYTVmN2Q5NS0xNGFmLTRlOGUtYWE0Yy1jZGJiMGU3ZGNhNDYiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwic3BlY2lhbGl6YXRpb25JZCI6bnVsbCwiaWF0IjoxNzgwMjI1MzAzLCJleHAiOjE3ODAyMjg5MDN9.aHBd3Fp2Ijb8hiWN91GsWnBsTer_iBOEadgxIT76dWg
+
+@refreshToken =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5OWJjM2I5Yy0zM2IzLTQyYWMtYmI0NC1jMjA5YzI5MTQ2MTkiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Nzc1NTk4MTMsImV4cCI6MTc3ODE2NDYxM30.fPL1UosI317n1H_V6q8jaXVJXkx1XdMmvDgASc-3p_U
+
+
+### Register User
+POST {{baseUrl}}/auth/register
+Accept-Language: ar
+Content-Type: application/json
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+{
+  "email": "user1@example.com",
+  "password": "password123",
+  "name": "John"
+}
+
+
+### Login User
+POST {{baseUrl}}/auth/login
+Accept-Language: en
+Content-Type: application/json
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+{
+  "email": "user1@example.com",
+  "password": "password123"
+}
+
+### Refresh Token
+POST {{baseUrl}}/auth/refresh
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Logout (Current Session)
+POST {{baseUrl}}/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Logout All Devices
+POST {{baseUrl}}/auth/logout-all
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+### Change Password
+POST {{baseUrl}}/auth/change-password
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "Password": "password123",
+  "newPassword": "newpassword123"
+}
+
+###
+GET {{baseUrl}}/users
+###
+POST  {{baseUrl}}/users
+Accept-Language: 
+{
+
+}
+
+### Create User (Arabic)
+POST {{baseUrl}}/users
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "email": "]",
+  "name": "محمد أحمد",
+  "password": "password123"
+}
+
+###
+
+### Create User (English)
+POST {{baseUrl}}/users
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "name": "John Doe",
+  "password": "password123"
+}
+
+###
+
+### Get All Users (with pagination)
+GET {{baseUrl}}/users?page=3&limit=9
+Accept-Language: ar
+
+###
+
+### Get User by ID
+GET {{baseUrl}}/users/3
+Accept-Language: en
+
+###
+
+### Update User
+PUT {{baseUrl}}/users/99bc3b9c-33b3-42ac-bb44-c209c2914619
+Content-Type: application/json
+Accept-Language: ar
+
+{
+  "name": "Ahmed Mohammed"
+}
+
+###
+
+### Delete User
+DELETE {{baseUrl}}/users/7
+Content-Type: application/json
+Accept-Language: ar
+
+###
+
+### Test Hello World with language
+GET {{baseUrl}}/
+Accept-Language: en
+
+###
+
+### Test Error
+GET {{baseUrl}}/test-error
+
+###
+POST {{baseUrl}}/test-validation
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "email": "]",
+  "name": "محمد"
+}
+
+### Resend Verification Email
+POST {{baseUrl}}/auth/resend-verification
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+
+### Verify Email
+POST {{baseUrl}}/auth/verify-email
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "token": "PUT_TOKEN_HERE"
+}
+
+### Forgot Password
+POST {{baseUrl}}/auth/forgot-password
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+
+### Reset Password
+POST {{baseUrl}}/auth/reset-password
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "token": "PUT_TOKEN_HERE",
+  "newPassword": "newStrongPassword123"
+}

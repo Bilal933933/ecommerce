@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /about
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /exams/
+Disallow: /exam-session
+Disallow: /exam-results
+Disallow: /leaderboard/
+Disallow: /statistics/
+Disallow: /profile/
+Disallow: /settings/
+Disallow: /specializations-sections/
+
+Sitemap: https://edara-prep.com/sitemap.xml

@@ -1,0 +1,172 @@
+{
+  "required": "This field is required",
+  "email": {
+    "invalid": "Invalid email address"
+  },
+  "min_length": "Minimum length is {min} characters",
+  "max_length": "Maximum length is {max} characters",
+  "string": "Must be a string",
+  "number": "Must be a number",
+  "boolean": "Must be true or false",
+  "enum": "Invalid value provided",
+  "url": "Invalid URL",
+  "positive": "Must be a positive number",
+  "integer": "Must be an integer",
+  "token": {
+    "required": "Token is required",
+    "string": "Token must be a string"
+  },
+  "password": {
+    "string": "Password must be a string",
+    "min_length": "Password minimum length is {min} characters"
+  },
+  "name": {
+    "string": "Name must be a string",
+    "max_length": "Name maximum length is {max} characters",
+    "min_length": "Name minimum length is {min} characters"
+  },
+  "description": {
+    "string": "Description must be a string",
+    "max_length": "Description maximum length is {max} characters",
+    "min_length": "Description minimum length is {min} characters"
+  },
+  "order": {
+    "number": "Order must be a number",
+    "min": "Order minimum is 0"
+  },
+  "question_count": {
+    "number": "Question count must be a number",
+    "min": "Question count minimum is {min}",
+    "max": "Question count maximum is {max}"
+  },
+  "time_limit_seconds": {
+    "number": "Time limit must be a number",
+    "min": "Time limit minimum is {min} seconds",
+    "max": "Time limit maximum is {max} seconds"
+  },
+  "refresh_token": {
+    "string": "Refresh token must be a string",
+    "required": "Refresh token is required"
+  },
+  "old_password": {
+    "string": "Old password must be a string",
+    "required": "Old password is required"
+  },
+  "new_password": {
+    "string": "New password must be a string",
+    "required": "New password is required",
+    "min_length": "New password minimum length is {min} characters"
+  },
+  "level": {
+    "order_required": "Level order is required",
+    "order_positive": "Order must be a positive number",
+    "order_integer": "Order must be an integer",
+    "translations_required": "Translations are required",
+    "locale_invalid": "Provided locale is not accepted",
+    "name_required": "Level name is required"
+  },
+  "question": {
+    "text": {
+      "string": "Question text must be a string",
+      "max_length": "Question text maximum length is {max} characters"
+    },
+    "section_id": {
+      "string": "Section ID must be a string"
+    },
+    "specialization_id": {
+      "string": "Specialization ID must be a string"
+    },
+    "difficulty": {
+      "enum": "Difficulty must be EASY, MEDIUM, or HARD"
+    },
+    "tags": {
+      "array": "Tags must be an array",
+      "string": "Each tag must be a string"
+    },
+    "options": {
+      "array": "Options must be an array",
+      "min_size": "Question must have at least 2 options"
+    },
+    "option_text": {
+      "string": "Option text must be a string",
+      "required": "Option text is required",
+      "min_length": "Option text minimum length is {min} characters",
+      "max_length": "Option text maximum length is {max} characters"
+    },
+    "is_correct": {
+      "boolean": "Is correct must be true or false"
+    },
+    "option_explanation": {
+      "string": "Option explanation must be a string",
+      "min_length": "Option explanation minimum length is {min} characters",
+      "max_length": "Option explanation maximum length is {max} characters"
+    },
+    "option_order": {
+      "integer": "Option order must be an integer",
+      "min": "Option order minimum is 0"
+    }
+  },
+  "exam": {
+    "mode": {
+      "enum": "Exam mode must be SIMULATION or PRACTICE"
+    },
+    "title": {
+      "string": "Exam title must be a string",
+      "min_length": "Exam title minimum length is {min} characters",
+      "max_length": "Exam title maximum length is {max} characters"
+    },
+    "section_id": {
+      "uuid": "Section ID must be a valid UUID"
+    },
+    "specialization_id": {
+      "uuid": "Specialization ID must be a valid UUID"
+    },
+    "question_id": {
+      "uuid": "Question ID must be a valid UUID",
+      "required": "Question ID is required"
+    },
+    "selected_option_id": {
+      "uuid": "Selected option must be a valid UUID"
+    }
+  },
+  "icon": {
+    "string": "Icon must be a string",
+    "max_length": "Icon maximum length is {max} characters",
+    "min_length": "Icon minimum length is {min} characters"
+  },
+  "color": {
+    "string": "Color must be a string",
+    "max_length": "Color maximum length is {max} characters",
+    "min_length": "Color minimum length is {min} characters"
+  },
+  "image_url": {
+    "string": "Image URL must be a string",
+    "max_length": "Image URL must be at most {max} characters",
+    "min_length": "Image URL must be at least {min} characters"
+  },
+  "phone": {
+    "invalid": "Phone number is not valid"
+  },
+  "bio": {
+    "too_long": "Bio must be at most {max} characters"
+  },
+  "date": {
+    "invalid": "Date is not valid"
+  },
+  "contact": {
+    "name": {
+      "string": "Name must be a string",
+      "min_length": "Name must be at least {min} characters",
+      "max_length": "Name must be at most {max} characters"
+    },
+    "email": {
+      "invalid": "Email is not valid"
+    },
+    "message": {
+      "string": "Message must be a string",
+      "required": "Message is required",
+      "min_length": "Message must be at least {min} characters",
+      "max_length": "Message must be at most {max} characters"
+    }
+  }
+}

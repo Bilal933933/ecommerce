@@ -1,0 +1,609 @@
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// // Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// ENUMS
+// ============================================================
+
+enum Role {
+  USER
+  ADMIN
+  CUSTOMER
+  DELIVERY
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum FileType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+}
+
+enum FileStatus {
+  PENDING
+  ACTIVE
+  ORPHAN
+}
+
+enum Locale {
+  ar
+  en
+}
+
+enum ProductType {
+  DIGITAL
+  PHYSICAL
+}
+
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
+
+enum DeliveryType {
+  INTERNAL
+  EXTERNAL
+}
+
+enum DeliveryStatus {
+  PENDING
+  ASSIGNED
+  PICKED_UP
+  OUT_FOR_DELIVERY
+  DELIVERED
+  FAILED
+  RETURNED
+}
+
+enum NotificationType {
+  ORDER_PLACED
+  ORDER_CONFIRMED
+  ORDER_PROCESSING
+  ORDER_SHIPPED
+  ORDER_OUT_FOR_DELIVERY
+  ORDER_DELIVERED
+  ORDER_CANCELLED
+  ORDER_RETURNED
+  DELIVERY_ASSIGNED
+  DELIVERY_REMINDER
+  DOWNLOAD_READY
+  DOWNLOAD_EXPIRING
+  GENERAL
+}
+
+// ============================================================
+// USER & AUTH
+// ============================================================
+
+model User {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  name              String?
+  deviceName        String?
+  password          String
+  role              Role      @default(CUSTOMER)
+  isEmailVerified   Boolean   @default(false)
+  isActive          Boolean   @default(true)
+  tokenVersion      Int       @default(0)
+  passwordChangedAt DateTime?
+  lastLoginAt       DateTime?
+  avatarUrl         String?
+  phone             String?   @unique
+  bio               String?
+  gender            Gender?
+  birthDate         DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  sessions           Session[]
+  passwordResets     PasswordReset[]
+  emailVerifications EmailVerification[]
+  cart               Cart?
+  orders             Order[]
+  notifications      Notification[]
+  deliveries         Delivery[]         @relation("DriverDeliveries")
+  orderStatusChanges OrderStatusHistory[]
+
+  @@index([email])
+  @@index([phone])
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshToken String
+  lookupHash   String?  @unique
+  userAgent    String?
+  ipAddress    String?
+  isRevoked    Boolean  @default(false)
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@index([userId, isRevoked])
+  @@map("sessions")
+}
+
+model EmailVerification {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("email_verifications")
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_resets")
+}
+
+// ============================================================
+// FILE
+// ============================================================
+
+model File {
+  id              String     @id @default(uuid())
+  url             String
+  publicId        String     @unique
+  type            FileType
+  size            Int
+  mimeType        String
+  status          FileStatus @default(PENDING)
+  uploadSessionId String
+  ownerId         String?
+  relatedType     String?
+  relatedId       String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  categoryImages  Category[]           @relation("CategoryImage")
+  productImages   ProductImage[]
+  variantImages   ProductVariantImage[]
+
+  @@index([status])
+  @@index([uploadSessionId])
+  @@index([relatedType, relatedId])
+  @@index([ownerId])
+  @@map("files")
+}
+
+// ============================================================
+// CATEGORY
+// ============================================================
+
+model Category {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  icon        String?
+  color       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  imageFileId String?
+  imageFile   File?    @relation("CategoryImage", fields: [imageFileId], references: [id], onDelete: SetNull)
+  parentId    String?
+  parent      Category?  @relation("CategoryChildren", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Category[] @relation("CategoryChildren")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations CategoryTranslation[]
+  products     Product[]
+
+  @@index([parentId])
+  @@index([slug])
+  @@map("categories")
+}
+
+model CategoryTranslation {
+  id          String   @id @default(uuid())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([categoryId, locale])
+  @@index([categoryId])
+  @@map("category_translations")
+}
+
+// ============================================================
+// PRODUCT
+// ============================================================
+
+model Product {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  type         ProductType
+  status       ProductStatus @default(DRAFT)
+  videoUrl     String?
+  categoryId   String?
+  category     Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  translations ProductTranslation[]
+  images       ProductImage[]
+  attributes   ProductAttribute[]
+  variants     ProductVariant[]
+  cartItems    CartItem[]
+  orderItems   OrderItem[]
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([status])
+  @@index([type])
+  @@map("products")
+}
+
+model ProductTranslation {
+  id          String   @id @default(uuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([productId, locale])
+  @@index([productId])
+  @@map("product_translations")
+}
+
+model ProductImage {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  fileId    String
+  file      File     @relation(fields: [fileId], references: [id], onDelete: Restrict)
+  order     Int      @default(0)
+  isMain    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+  @@map("product_images")
+}
+
+// ============================================================
+// PRODUCT ATTRIBUTES & VARIANTS
+// ============================================================
+
+model ProductAttribute {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations ProductAttributeTranslation[]
+  values       ProductAttributeValue[]
+
+  @@index([productId])
+  @@map("product_attributes")
+}
+
+model ProductAttributeTranslation {
+  id          String           @id @default(uuid())
+  attributeId String
+  attribute   ProductAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String
+  createdAt   DateTime         @default(now())
+
+  @@unique([attributeId, locale])
+  @@index([attributeId])
+  @@map("product_attribute_translations")
+}
+
+model ProductAttributeValue {
+  id          String           @id @default(uuid())
+  attributeId String
+  attribute   ProductAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  order       Int              @default(0)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  translations  ProductAttributeValueTranslation[]
+  variantValues ProductVariantValue[]
+
+  @@index([attributeId])
+  @@map("product_attribute_values")
+}
+
+model ProductAttributeValueTranslation {
+  id      String                @id @default(uuid())
+  valueId String
+  value   ProductAttributeValue @relation(fields: [valueId], references: [id], onDelete: Cascade)
+  locale  Locale
+  name    String
+  createdAt DateTime            @default(now())
+
+  @@unique([valueId, locale])
+  @@index([valueId])
+  @@map("product_attribute_value_translations")
+}
+
+model ProductVariant {
+  id           String   @id @default(uuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku          String?  @unique
+  price        Decimal  @db.Decimal(10, 2)
+  comparePrice Decimal? @db.Decimal(10, 2)
+  stock        Int      @default(0)
+  isDefault    Boolean  @default(false)
+
+  // للمنتج الرقمي
+  fileUrl      String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  variantValues ProductVariantValue[]
+  images        ProductVariantImage[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+
+  @@index([productId])
+  @@index([sku])
+  @@map("product_variants")
+}
+
+model ProductVariantValue {
+  id        String                @id @default(uuid())
+  variantId String
+  variant   ProductVariant        @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  valueId   String
+  value     ProductAttributeValue @relation(fields: [valueId], references: [id], onDelete: Restrict)
+  createdAt DateTime              @default(now())
+
+  @@unique([variantId, valueId])
+  @@index([variantId])
+  @@map("product_variant_values")
+}
+
+model ProductVariantImage {
+  id        String         @id @default(uuid())
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  fileId    String
+  file      File           @relation(fields: [fileId], references: [id], onDelete: Restrict)
+  order     Int            @default(0)
+  isMain    Boolean        @default(false)
+  createdAt DateTime       @default(now())
+
+  @@index([variantId])
+  @@map("product_variant_images")
+}
+
+// ============================================================
+// CART
+// ============================================================
+
+model Cart {
+  id        String     @id @default(uuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  items CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem {
+  id         String         @id @default(uuid())
+  cartId     String
+  cart       Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId  String
+  product    Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variantId  String
+  variant    ProductVariant @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  quantity   Int
+  priceAtAdd Decimal        @db.Decimal(10, 2)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@unique([cartId, variantId])
+  @@index([cartId])
+  @@map("cart_items")
+}
+
+// ============================================================
+// ORDER
+// ============================================================
+
+model Order {
+  id          String      @id @default(uuid())
+  orderNumber String      @unique
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Restrict)
+  status      OrderStatus @default(PENDING)
+
+  // snapshot العنوان وقت الطلب
+  shippingAddress Json?
+
+  // الأسعار
+  subtotal     Decimal  @db.Decimal(10, 2)
+  shippingCost Decimal  @default(0) @db.Decimal(10, 2)
+  total        Decimal  @db.Decimal(10, 2)
+
+  // للمنتج الرقمي
+  downloadExpiresAt DateTime?
+
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items          OrderItem[]
+  statusHistory  OrderStatusHistory[]
+  delivery       Delivery?
+
+  @@index([userId])
+  @@index([status])
+  @@index([orderNumber])
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String         @id @default(uuid())
+  orderId   String
+  order     Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product        @relation(fields: [productId], references: [id], onDelete: Restrict)
+  variantId String
+  variant   ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  quantity  Int
+
+  // snapshot وقت الطلب
+  productName    Json    // { ar: "...", en: "..." }
+  variantDetails Json    // { color: "أحمر", size: "L" }
+  unitPrice      Decimal @db.Decimal(10, 2)
+  totalPrice     Decimal @db.Decimal(10, 2)
+
+  // للمنتج الرقمي
+  fileUrl       String?
+  downloadCount Int     @default(0)
+  maxDownloads  Int     @default(3)
+
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model OrderStatusHistory {
+  id          String      @id @default(uuid())
+  orderId     String
+  order       Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status      OrderStatus
+  note        String?
+  changedById String
+  changedBy   User        @relation(fields: [changedById], references: [id], onDelete: Restrict)
+  createdAt   DateTime    @default(now())
+
+  @@index([orderId])
+  @@map("order_status_history")
+}
+
+// ============================================================
+// DELIVERY
+// ============================================================
+
+model Delivery {
+  id      String       @id @default(uuid())
+  orderId String       @unique
+  order   Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  type    DeliveryType
+  status  DeliveryStatus @default(PENDING)
+
+  // داخلي
+  driverId String?
+  driver   User?   @relation("DriverDeliveries", fields: [driverId], references: [id], onDelete: SetNull)
+
+  // خارجي
+  courierName    String?
+  trackingNumber String?
+  trackingUrl    String?
+
+  // التواريخ
+  estimatedAt DateTime?
+  deliveredAt DateTime?
+
+  // إثبات التسليم
+  proofImageUrl String?
+  recipientName String?
+  notes         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([driverId])
+  @@index([status])
+  @@map("deliveries")
+}
+
+// ============================================================
+// NOTIFICATION
+// ============================================================
+
+model Notification {
+  id     String           @id @default(uuid())
+  userId String
+  user   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type   NotificationType
+
+  // المحتوى
+  titleAr String
+  titleEn String
+  bodyAr  String
+  bodyEn  String
+
+  // ربط بالحدث
+  relatedType String?
+  relatedId   String?
+
+  // القنوات المُرسَل عبرها
+  channels String[] // ["in_app", "email", "sms"]
+
+  // الحالة
+  isRead  Boolean   @default(false)
+  readAt  DateTime?
+  sentAt  DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([userId, isRead])
+  @@index([relatedType, relatedId])
+  @@map("notifications")
+}

@@ -1,0 +1,107 @@
+{
+  "USER_CREATED": "User created successfully",
+  "USER_UPDATED": "User updated successfully",
+  "USER_DELETED": "User deleted successfully",
+  "USER_RETRIEVED": "User retrieved successfully",
+  "USER_ALL_RETRIEVED": "All users retrieved successfully",
+  "DATA_RETRIEVED": "Data retrieved successfully",
+  "CREATED_SUCCESS": "Created successfully",
+  "UPDATED_SUCCESS": "Updated successfully",
+  "DELETED_SUCCESS": "Deleted successfully",
+  "OPERATION_SUCCESS": "Operation completed successfully",
+  "success": "Success",
+  "default": {
+    "post": "Created successfully",
+    "get": "Data fetched successfully",
+    "patch": "Updated successfully",
+    "delete": "Deleted successfully"
+  },
+  "auth": {
+    "login": "Logged in successfully",
+    "register": "Account created successfully",
+    "logout": "Logged out successfully",
+    "refresh": "Session refreshed successfully",
+    "change_password": "Password changed successfully",
+    "verify_email": "Email verified successfully",
+    "reset_password": "Password reset successfully",
+    "resend_verification": "Verification email sent successfully",
+    "forgot_password": "Password reset email sent successfully"
+  },
+  "users": {
+    "list": "Users list fetched successfully",
+    "detail": "User details fetched successfully",
+    "profile": "Profile fetched successfully",
+    "updateMe": "Profile updated successfully",
+    "avatar_updated": "Avatar updated successfully",
+    "avatar_removed": "Avatar removed successfully",
+    "created": "User created successfully",
+    "updated": "User updated successfully",
+    "deleted": "User deleted successfully"
+  },
+  "levels": {
+    "list": "Levels retrieved successfully",
+    "detail": "Level retrieved successfully",
+    "created": "Level created successfully",
+    "updated": "Level updated successfully",
+    "deleted": "Level deleted successfully",
+    "toggled": "Level status updated successfully"
+  },
+  "questions": {
+    "create": "Question created successfully",
+    "findAll": "Questions retrieved successfully",
+    "findOne": "Question retrieved successfully",
+    "update": "Question updated successfully",
+    "delete": "Question disabled successfully"
+  },
+  "exams": {
+    "create": "Exam created successfully",
+    "findOne": "Exam retrieved successfully",
+    "myList": "Your exams list retrieved successfully",
+    "groupQuestions": "Group questions retrieved successfully",
+    "review": "Exam review retrieved successfully",
+    "closeGroup": "Group closed successfully",
+    "answer": "Answer recorded successfully",
+    "submit": "Exam submitted successfully"
+  },
+  "files": {
+    "signed_url": "Signed URL generated successfully",
+    "confirmed": "File upload confirmed successfully",
+    "deleted": "File deleted successfully"
+  },
+  "sections": {
+    "create": "Section created successfully",
+    "findAll": "Sections retrieved successfully",
+    "findOne": "Section retrieved successfully",
+    "update": "Section updated successfully",
+    "delete": "Section deleted successfully"
+  },
+  "results": {
+    "findOne": "Exam result retrieved successfully",
+    "findAll": "Results retrieved successfully",
+    "sectionResults": "Section results retrieved successfully",
+    "progress": "Progress retrieved successfully",
+    "sectionProgress": "Section progress retrieved successfully"
+  },
+  "leaderboard": {
+    "specialization": "Specialization leaderboard retrieved successfully",
+    "section": "Section leaderboard retrieved successfully",
+    "global": "Global leaderboard retrieved successfully",
+    "stats": "Leaderboard statistics retrieved successfully"
+  },
+  "admin": {
+    "dashboard": "Admin dashboard retrieved successfully"
+  },
+  "stats": {
+    "public": "Platform statistics retrieved successfully"
+  },
+  "contact": {
+    "sent": "Your message has been sent successfully"
+  },
+  "specializations": {
+    "create": "Specialization created successfully",
+    "findAll": "Specializations retrieved successfully",
+    "findOne": "Specialization retrieved successfully",
+    "update": "Specialization updated successfully",
+    "delete": "Specialization deleted successfully"
+  }
+}

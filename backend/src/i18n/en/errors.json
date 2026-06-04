@@ -1,0 +1,71 @@
+{
+  "validation_error": "Validation error occurred",
+  "not_found": "The requested resource was not found",
+  "conflict": "This data already exists",
+  "unauthorized": "You are not authorized to access this resource",
+  "forbidden": "You do not have permission to perform this action",
+  "server_error": "An internal server error occurred, please try again later",
+  "database_error": "A database error occurred",
+  "field_taken": "The field {field} is already taken",
+  "auth": {
+    "invalid_credentials": "Invalid email or password",
+    "token_expired": "Your session has expired, please log in again",
+    "token_invalid": "Invalid authentication token",
+    "email_taken": "This email is already in use",
+    "account_disabled": "This account is disabled, please contact support",
+    "email_already_verified": "Email is already verified",
+    "same_password": "New password must be different from the current password"
+  },
+  "level": {
+    "not_found": "Level not found",
+    "order_taken": "Level order is already taken",
+    "has_grades": "Cannot delete level because it has grades"
+  },
+  "question": {
+    "not_found": "Question not found",
+    "section_or_specialization_required": "Either section or specialization must be specified",
+    "section_and_specialization_conflict": "Cannot specify both section and specialization",
+    "one_correct_option_required": "Question must have exactly one correct option"
+  },
+  "users": {
+    "not_found": "User not found",
+    "email_taken": "Email is already in use"
+  },
+  "exam": {
+    "specialization_required": "You must have a specialization to create a simulation exam",
+    "no_active_sections": "No active sections available",
+    "no_active_questions": "No active questions available for the exam",
+    "section_or_specialization_required": "Either section or specialization must be specified for the exam",
+    "section_and_specialization_conflict": "Cannot specify both section and specialization for the exam",
+    "section_not_found": "Section not found or not active",
+    "not_found": "Exam not found",
+    "already_completed": "This exam has already been completed",
+    "question_not_in_exam": "Question is not in this exam",
+    "answer_already_submitted": "An answer for this question has already been submitted",
+    "option_not_in_question": "The selected option does not belong to this question",
+    "group_not_found": "Group not found",
+    "group_already_locked": "Group is already locked",
+    "previous_group_not_locked": "Previous groups must be completed first",
+    "group_is_locked": "Cannot modify answer because the group is locked",
+    "all_groups_must_be_locked": "All groups must be completed before submitting the exam"
+  },
+  "file": {
+    "not_found": "File not found",
+    "type_not_allowed": "File type not allowed. Allowed types: {allowedTypes}",
+    "size_exceeded": "File size exceeds the maximum limit ({maxSize}MB)",
+    "upload_url_failed": "Failed to generate upload URL",
+    "avatar_not_image": "Avatar file must be an image"
+  },
+  "progress": {
+    "not_found": "No progress data found"
+  },
+  "results": {
+    "page_out_of_range": "Requested page exceeds the total number of pages"
+  },
+  "sections": {
+    "not_found": "Section not found"
+  },
+  "specializations": {
+    "not_found": "Specialization not found"
+  }
+}

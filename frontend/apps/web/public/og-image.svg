@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f2b4a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Accent shape -->
+  <circle cx="1000" cy="100" r="250" fill="url(#accent)" opacity="0.08"/>
+  <circle cx="200" cy="500" r="180" fill="url(#accent)" opacity="0.06"/>
+  
+  <!-- Logo icon -->
+  <rect x="80" y="80" width="64" height="64" rx="16" fill="url(#accent)"/>
+  <text x="112" y="122" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">ع</text>
+  
+  <!-- Main title -->
+  <text x="80" y="220" font-family="Arial" font-size="56" font-weight="bold" fill="white">إدارة بريب</text>
+  <text x="80" y="280" font-family="Arial" font-size="36" fill="#94a3b8">EdaraPrep</text>
+  
+  <!-- Tagline -->
+  <text x="80" y="350" font-family="Arial" font-size="22" fill="#64748b">منصة متخصصة لاختبارات تقييم الأداء والإدارة</text>
+  
+  <!-- Decorative line -->
+  <rect x="80" y="400" width="100" height="4" rx="2" fill="url(#accent)"/>
+  
+  <!-- Bottom text -->
+  <text x="80" y="550" font-family="Arial" font-size="16" fill="#475569">edara-prep.com</text>
+</svg>

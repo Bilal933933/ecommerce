@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@workspace/ui/*": ["../../packages/ui/src/*"],
+      "@workspace/types/*": ["../../packages/types/src/*"],
+      "@workspace/store/*": ["../../packages/store/src/*"],
+      "@workspace/api-client/*": ["../../packages/api-client/src/*"],
+      "@workspace/locales/*": ["../../packages/locales/src/*"]
+    }
+  }
+}

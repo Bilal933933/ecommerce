@@ -1,0 +1,51 @@
+### Admin Controller Tests
+### ============================================
+### IMPORTANT: Before testing, run requests in order:
+###   0 → Login with ADMIN account
+###   then update @accessToken below
+###   (leaderboard endpoints work with any authenticated user)
+### ============================================
+
+# ─── Variables (update these before testing) ────
+@baseUrl = http://localhost:5000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYTVmN2Q5NS0xNGFmLTRlOGUtYWE0Yy1jZGJiMGU3ZGNhNDYiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwic3BlY2lhbGl6YXRpb25JZCI6bnVsbCwiaWF0IjoxNzgwMjM3NjQzLCJleHAiOjE3ODAyNDEyNDN9.-VP4c7M_OL3Wpog8i2_0MFNb-YzG48UaMAW50G1DeWc
+
+
+### ============================================
+### 0. تسجيل الدخول بحساب ADMIN
+### ============================================
+
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "Admin123!"
+}
+
+### ============================================
+### ========== لوحة التحكم ==========
+### ============================================
+
+### 1. إحصائيات لوحة التحكم — AR
+GET {{baseUrl}}/admin/dashboard
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### 2. إحصائيات لوحة التحكم — EN
+GET {{baseUrl}}/admin/dashboard
+Authorization: Bearer {{accessToken}}
+Accept-Language: en
+
+### ============================================
+### ========== حالات الخطأ ==========
+### ============================================
+
+### 3. بدون توكن — يجب أن يرجع 401
+GET {{baseUrl}}/admin/dashboard
+Accept-Language: ar
+
+### 4. توكن مستخدم عادي — يجب أن يرجع 403
+GET {{baseUrl}}/admin/dashboard
+Authorization: Bearer <user-token-here>
+Accept-Language: ar
