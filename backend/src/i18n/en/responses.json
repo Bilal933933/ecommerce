@@ -51,6 +51,13 @@
     "detail": "Category details retrieved successfully",
     "tree": "Category tree retrieved successfully"
   },
+  "orders": {
+    "created": "Order created successfully",
+    "list": "Orders retrieved successfully",
+    "detail": "Order details retrieved successfully",
+    "admin_list": "All orders retrieved successfully",
+    "status_updated": "Order status updated successfully"
+  },
   "cart": {
     "retrieved": "Cart retrieved successfully",
     "item_added": "Item added to cart successfully",

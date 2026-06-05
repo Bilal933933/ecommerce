@@ -206,6 +206,20 @@
       "category_id_must_be_uuid": "Category ID must be a valid UUID"
     }
   },
+  "orders": {
+    "status_invalid": "Order status is invalid",
+    "note_must_be_string": "Note must be a string",
+    "page_must_be_int": "Page must be an integer",
+    "page_min": "Page must be at least 1",
+    "limit_must_be_int": "Limit must be an integer",
+    "limit_min": "Limit must be at least 1",
+    "limit_max": "Limit must not exceed 100",
+    "search_must_be_string": "Search must be a string",
+    "user_id_must_be_string": "User ID must be a string",
+    "date_from_invalid": "Date from is invalid",
+    "date_to_invalid": "Date to is invalid",
+    "shipping_address_must_be_object": "Shipping address must be a JSON object"
+  },
   "cart": {
     "variant_id_must_be_uuid": "Variant ID must be a valid UUID",
     "quantity_must_be_integer": "Quantity must be an integer",

@@ -44,6 +44,14 @@
     "has_orders": "لا يمكن حذف منتج عليه طلبات",
     "no_files_provided": "يرجى توفير ملفات واحدة على الأقل"
   },
+  "orders": {
+    "not_found": "الطلب غير موجود",
+    "empty_cart": "السلة فارغة، أضف منتجات قبل إنشاء الطلب",
+    "variant_unavailable": "النوع (variant) {sku} غير متاح حالياً",
+    "insufficient_stock": "الكمية المطلوبة من {sku} تتجاوز المخزون المتوفر ({available}) — المتاح: {requested}",
+    "shipping_address_required": "يرجى إضافة عنوان الشحن للمنتجات المادية",
+    "invalid_status_transition": "لا يمكن تغيير حالة الطلب من {from} إلى {to}"
+  },
   "cart": {
     "not_found": "السلة غير موجودة",
     "item_not_found": "العنصر غير موجود في السلة",

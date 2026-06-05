@@ -44,6 +44,14 @@
     "has_orders": "Cannot delete product with existing orders",
     "no_files_provided": "Please provide at least one file"
   },
+  "orders": {
+    "not_found": "Order not found",
+    "empty_cart": "Cart is empty. Please add products before placing an order",
+    "variant_unavailable": "Variant {sku} is currently unavailable",
+    "insufficient_stock": "Requested quantity for {sku} exceeds available stock ({available}) — requested: {requested}",
+    "shipping_address_required": "Shipping address is required for physical products",
+    "invalid_status_transition": "Cannot change order status from {from} to {to}"
+  },
   "cart": {
     "not_found": "Cart not found",
     "item_not_found": "Item not found in cart",

@@ -1,0 +1,145 @@
+### Orders Controller Tests
+
+@baseUrl = http://localhost:5000
+@adminToken = PUT_ADMIN_TOKEN_HERE
+@customerToken = PUT_CUSTOMER_TOKEN_HERE
+@orderId = PUT_ORDER_ID_HERE
+
+
+### ─── الطلبات (عميل) ────────────────────────────────────
+
+### Create Order from Cart (إنشاء طلب من السلة)
+POST {{baseUrl}}/orders
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "shippingAddress": {
+    "street": "شارع الملك فهد",
+    "city": "الرياض",
+    "country": "السعودية",
+    "zipCode": "12345"
+  }
+}
+
+
+### Get My Orders (قائمة طلباتي)
+GET {{baseUrl}}/orders
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar
+
+
+### Get My Orders Filtered by Status
+GET {{baseUrl}}/orders?status=PENDING&page=1&limit=10
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar
+
+
+### Get My Order Detail (تفاصيل طلب)
+GET {{baseUrl}}/orders/{{orderId}}
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar
+
+
+### ─── لوحة الأدمن ────────────────────────────────────────
+
+### Admin: Get All Orders (كل الطلبات)
+GET {{baseUrl}}/admin/orders
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Filter by Status
+GET {{baseUrl}}/admin/orders?status=PENDING&page=1&limit=20
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Search by Order Number
+GET {{baseUrl}}/admin/orders?orderNumber=ORD-2026
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Filter by Date Range
+GET {{baseUrl}}/admin/orders?dateFrom=2026-01-01&dateTo=2026-12-31
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Update Order Status → CONFIRMED
+PATCH {{baseUrl}}/admin/orders/{{orderId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "CONFIRMED",
+  "note": "تم تأكيد الطلب"
+}
+
+
+### Admin: Update Order Status → CANCELLED
+PATCH {{baseUrl}}/admin/orders/{{orderId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "CANCELLED",
+  "note": "تم إلغاء الطلب لعدم توفر المخزون"
+}
+
+
+### ─── أخطاء ──────────────────────────────────────────────
+
+### Empty Cart (سلة فارغة)
+POST {{baseUrl}}/orders
+Authorization: Bearer {{customerToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{}
+
+
+### Missing Shipping Address for Physical Product
+POST {{baseUrl}}/orders
+Authorization: Bearer {{customerToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{}
+
+
+### Invalid Status Transition (نقل حالة غير صالح)
+PATCH {{baseUrl}}/admin/orders/{{orderId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "status": "DELIVERED"
+}
+
+
+### Invalid Status Value
+PATCH {{baseUrl}}/admin/orders/{{orderId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "status": "INVALID"
+}
+
+
+### Unauthorized (بدون توكن)
+GET {{baseUrl}}/orders
+Accept-Language: ar
+
+
+### Customer Accessing Admin Route (ممنوع)
+GET {{baseUrl}}/admin/orders
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar

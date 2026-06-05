@@ -206,6 +206,20 @@
       "category_id_must_be_uuid": "معرف التصنيف للفلترة يجب أن يكون UUID صحيحاً"
     }
   },
+  "orders": {
+    "status_invalid": "حالة الطلب غير صالحة",
+    "note_must_be_string": "الملاحظة يجب أن تكون نصاً",
+    "page_must_be_int": "رقم الصفحة يجب أن يكون عدداً صحيحاً",
+    "page_min": "رقم الصفحة يجب أن يكون 1 على الأقل",
+    "limit_must_be_int": "الحد الأقصى يجب أن يكون عدداً صحيحاً",
+    "limit_min": "الحد الأقصى يجب أن يكون 1 على الأقل",
+    "limit_max": "الحد الأقصى يجب ألا يزيد عن 100",
+    "search_must_be_string": "البحث يجب أن يكون نصاً",
+    "user_id_must_be_string": "معرف المستخدم يجب أن يكون نصاً",
+    "date_from_invalid": "تاريخ البداية غير صالح",
+    "date_to_invalid": "تاريخ النهاية غير صالح",
+    "shipping_address_must_be_object": "عنوان الشحن يجب أن يكون كائناً (JSON)"
+  },
   "cart": {
     "variant_id_must_be_uuid": "معرف النوع (variant) يجب أن يكون UUID صحيحاً",
     "quantity_must_be_integer": "الكمية يجب أن تكون عدداً صحيحاً",

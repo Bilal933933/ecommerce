@@ -2,6 +2,7 @@ import prisma from './connect';
 import { seedCategories } from './seeds/categories.seed';
 import { seedProducts } from './seeds/products.seed';
 import { seedCart } from './seeds/cart.seed';
+import { seedOrders } from './seeds/orders.seed';
 
 async function main() {
   console.log('🌱 بدء عملية البذر (Seeding)...\n');
@@ -9,6 +10,7 @@ async function main() {
   await seedCategories();
   await seedProducts();
   await seedCart();
+  await seedOrders();
 
   console.log('\n✅ اكتملت عملية البذر بنجاح!');
 }

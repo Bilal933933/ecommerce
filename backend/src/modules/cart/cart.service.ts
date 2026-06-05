@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Injectable,
@@ -83,7 +83,10 @@ export class CartService {
       throw new NotFoundException(this.i18n.t('errors.cart.variant_not_found'));
     }
 
-    if (variant.product.type !== 'DIGITAL') {
+    const productType: string = variant.product.type;
+    const productId: string = variant.product.id;
+
+    if (productType !== 'DIGITAL') {
       if (variant.stock < dto.quantity) {
         throw new ConflictException(
           this.i18n.t('errors.cart.insufficient_stock', {
@@ -110,7 +113,7 @@ export class CartService {
         );
       }
 
-      if (variant.product.type !== 'DIGITAL' && variant.stock < newQuantity) {
+      if (productType !== 'DIGITAL' && variant.stock < newQuantity) {
         throw new ConflictException(
           this.i18n.t('errors.cart.insufficient_stock', {
             args: { quantity: newQuantity, stock: variant.stock },
@@ -123,7 +126,7 @@ export class CartService {
       await this.cartRepo.addItem(
         cart.id,
         dto.variantId,
-        variant.product.id,
+        productId,
         dto.quantity,
         new Prisma.Decimal(Number(variant.price)),
       );
@@ -152,6 +155,8 @@ export class CartService {
       throw new NotFoundException(this.i18n.t('errors.cart.variant_not_found'));
     }
 
+    const productType: string = variant.product.type;
+
     if (dto.quantity > MAX_QUANTITY_PER_ITEM) {
       throw new BadRequestException(
         this.i18n.t('errors.cart.max_quantity_exceeded', {
@@ -160,7 +165,7 @@ export class CartService {
       );
     }
 
-    if (variant.product.type !== 'DIGITAL' && variant.stock < dto.quantity) {
+    if (productType !== 'DIGITAL' && variant.stock < dto.quantity) {
       throw new ConflictException(
         this.i18n.t('errors.cart.insufficient_stock', {
           args: { quantity: dto.quantity, stock: variant.stock },
