@@ -52,6 +52,19 @@
     "shipping_address_required": "يرجى إضافة عنوان الشحن للمنتجات المادية",
     "invalid_status_transition": "لا يمكن تغيير حالة الطلب من {from} إلى {to}"
   },
+  "delivery": {
+    "not_found": "التوصيل غير موجود",
+    "order_not_found": "الطلب غير موجود",
+    "already_exists": "يوجد توصيل مسبق لهذا الطلب",
+    "invalid_order_status": "يجب أن يكون الطلب مؤكداً أو قيد المعالجة لإنشاء توصيل",
+    "driver_not_found": "السائق غير موجود",
+    "driver_invalid_role": "المستخدم ليس سائق توصيل",
+    "driver_required": "يرجى تحديد سائق للتوصيل الداخلي",
+    "courier_required": "يرجى إدخال اسم شركة الشحن للتوصيل الخارجي",
+    "invalid_status_transition": "لا يمكن تغيير حالة التوصيل من {from} إلى {to}",
+    "not_assigned_to_you": "هذا التوصيل غير مسند إليك",
+    "proof_invalid_status": "يمكن رفع صورة الإثبات فقط عندما يكون التوصيل في حالة خارج للتوصيل أو تم التوصيل"
+  },
   "cart": {
     "not_found": "السلة غير موجودة",
     "item_not_found": "العنصر غير موجود في السلة",

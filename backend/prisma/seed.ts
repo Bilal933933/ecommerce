@@ -3,6 +3,7 @@ import { seedCategories } from './seeds/categories.seed';
 import { seedProducts } from './seeds/products.seed';
 import { seedCart } from './seeds/cart.seed';
 import { seedOrders } from './seeds/orders.seed';
+import { seedDeliveries } from './seeds/delivery.seed';
 
 async function main() {
   console.log('🌱 بدء عملية البذر (Seeding)...\n');
@@ -11,6 +12,7 @@ async function main() {
   await seedProducts();
   await seedCart();
   await seedOrders();
+  await seedDeliveries();
 
   console.log('\n✅ اكتملت عملية البذر بنجاح!');
 }

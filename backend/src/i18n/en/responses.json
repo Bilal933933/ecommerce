@@ -65,6 +65,15 @@
     "item_removed": "Item removed from cart successfully",
     "cleared": "Cart cleared successfully"
   },
+  "delivery": {
+    "created": "Delivery created successfully",
+    "updated": "Delivery updated successfully",
+    "status_updated": "Delivery status updated successfully",
+    "proof_updated": "Proof image updated successfully",
+    "list": "Deliveries retrieved successfully",
+    "detail": "Delivery details retrieved successfully",
+    "my_list": "My deliveries retrieved successfully"
+  },
   "products": {
     "created": "Product created successfully",
     "updated": "Product updated successfully",

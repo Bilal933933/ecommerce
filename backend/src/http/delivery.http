@@ -1,0 +1,243 @@
+### Delivery Controller Tests
+
+@baseUrl = http://localhost:5000
+@adminToken = PUT_ADMIN_TOKEN_HERE
+@driverToken = PUT_DRIVER_TOKEN_HERE
+@customerToken = PUT_CUSTOMER_TOKEN_HERE
+@deliveryId = PUT_DELIVERY_ID_HERE
+@orderId = PUT_ORDER_ID_HERE
+@fileId = PUT_FILE_ID_HERE
+
+
+### ─── الأدمن ─────────────────────────────────────────────
+
+### Admin: Create Internal Delivery (إنشاء توصيل داخلي)
+POST {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "type": "INTERNAL",
+  "driverId": "PUT_DRIVER_UUID_HERE",
+  "estimatedAt": "2026-06-07T10:00:00.000Z",
+  "notes": "توصيل سريع"
+}
+
+
+### Admin: Create External Delivery (توصيل خارجي)
+POST {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "type": "EXTERNAL",
+  "courierName": "DHL",
+  "trackingNumber": "DHL-123456789",
+  "trackingUrl": "https://dhl.com/track/123456789"
+}
+
+
+### Admin: Get All Deliveries (كل التوصيلات)
+GET {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Filter Deliveries by Status
+GET {{baseUrl}}/admin/deliveries?status=ASSIGNED
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Filter Deliveries by Type
+GET {{baseUrl}}/admin/deliveries?type=INTERNAL
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Filter Deliveries by Date Range
+GET {{baseUrl}}/admin/deliveries?dateFrom=2026-01-01&dateTo=2026-12-31
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Get Delivery Detail
+GET {{baseUrl}}/admin/deliveries/{{deliveryId}}
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+
+
+### Admin: Update Delivery (Change Driver, Tracking, etc.)
+PATCH {{baseUrl}}/admin/deliveries/{{deliveryId}}
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "notes": "تحديث الملاحظات",
+  "estimatedAt": "2026-06-08T14:00:00.000Z"
+}
+
+
+### Admin: Update Delivery Status → OUT_FOR_DELIVERY
+PATCH {{baseUrl}}/admin/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "OUT_FOR_DELIVERY"
+}
+
+
+### Admin: Update Delivery Status → DELIVERED (يُحدّث الطلب تلقائياً)
+PATCH {{baseUrl}}/admin/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "DELIVERED",
+  "note": "تم التوصيل بنجاح"
+}
+
+
+### ─── السائق ─────────────────────────────────────────────
+
+### Driver: Get My Deliveries (توصيلاتي)
+GET {{baseUrl}}/deliveries/my
+Authorization: Bearer {{driverToken}}
+Accept-Language: ar
+
+
+### Driver: Filter My Deliveries by Status
+GET {{baseUrl}}/deliveries/my?status=ASSIGNED
+Authorization: Bearer {{driverToken}}
+Accept-Language: ar
+
+
+### Driver: Update Status → PICKED_UP
+PATCH {{baseUrl}}/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{driverToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "PICKED_UP"
+}
+
+
+### Driver: Update Status → OUT_FOR_DELIVERY
+PATCH {{baseUrl}}/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{driverToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "status": "OUT_FOR_DELIVERY"
+}
+
+
+### Driver: Upload Proof Image (رفع صورة إثبات)
+PATCH {{baseUrl}}/deliveries/{{deliveryId}}/proof
+Authorization: Bearer {{driverToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "fileId": "{{fileId}}",
+  "recipientName": "أحمد محمد"
+}
+
+
+### ─── أخطاء ──────────────────────────────────────────────
+
+### Delivery Already Exists (توصيل مكرر)
+POST {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "type": "INTERNAL",
+  "driverId": "PUT_DRIVER_UUID_HERE"
+}
+
+
+### Invalid Status Transition (نقل حالة غير صالح)
+PATCH {{baseUrl}}/admin/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "status": "DELIVERED"
+}
+
+
+### Driver: Access Not Assigned Delivery (توصيل ليس لك)
+PATCH {{baseUrl}}/deliveries/{{deliveryId}}/status
+Authorization: Bearer {{customerToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "status": "PICKED_UP"
+}
+
+
+### Proof in Wrong Status (حالة غير مناسبة للإثبات)
+PATCH {{baseUrl}}/deliveries/{{deliveryId}}/proof
+Authorization: Bearer {{driverToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "fileId": "{{fileId}}"
+}
+
+
+### Missing Driver for Internal Delivery
+POST {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "type": "INTERNAL"
+}
+
+
+### Missing Courier Name for External Delivery
+POST {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{adminToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "type": "EXTERNAL"
+}
+
+
+### Unauthorized (بدون توكن)
+GET {{baseUrl}}/admin/deliveries
+Accept-Language: ar
+
+
+### Customer Accessing Admin Route (ممنوع)
+GET {{baseUrl}}/admin/deliveries
+Authorization: Bearer {{customerToken}}
+Accept-Language: ar
+
+
+### Admin Accessing Driver Route (ممنوع)
+GET {{baseUrl}}/deliveries/my
+Authorization: Bearer {{adminToken}}
+Accept-Language: ar

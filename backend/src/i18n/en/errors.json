@@ -52,6 +52,19 @@
     "shipping_address_required": "Shipping address is required for physical products",
     "invalid_status_transition": "Cannot change order status from {from} to {to}"
   },
+  "delivery": {
+    "not_found": "Delivery not found",
+    "order_not_found": "Order not found",
+    "already_exists": "A delivery already exists for this order",
+    "invalid_order_status": "Order must be confirmed or processing to create a delivery",
+    "driver_not_found": "Driver not found",
+    "driver_invalid_role": "User is not a delivery driver",
+    "driver_required": "Driver is required for internal delivery",
+    "courier_required": "Courier name is required for external delivery",
+    "invalid_status_transition": "Cannot change delivery status from {from} to {to}",
+    "not_assigned_to_you": "This delivery is not assigned to you",
+    "proof_invalid_status": "Proof image can only be uploaded when delivery is out for delivery or delivered"
+  },
   "cart": {
     "not_found": "Cart not found",
     "item_not_found": "Item not found in cart",
