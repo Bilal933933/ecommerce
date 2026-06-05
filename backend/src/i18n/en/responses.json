@@ -38,70 +38,29 @@
     "updated": "User updated successfully",
     "deleted": "User deleted successfully"
   },
-  "levels": {
-    "list": "Levels retrieved successfully",
-    "detail": "Level retrieved successfully",
-    "created": "Level created successfully",
-    "updated": "Level updated successfully",
-    "deleted": "Level deleted successfully",
-    "toggled": "Level status updated successfully"
-  },
-  "questions": {
-    "create": "Question created successfully",
-    "findAll": "Questions retrieved successfully",
-    "findOne": "Question retrieved successfully",
-    "update": "Question updated successfully",
-    "delete": "Question disabled successfully"
-  },
-  "exams": {
-    "create": "Exam created successfully",
-    "findOne": "Exam retrieved successfully",
-    "myList": "Your exams list retrieved successfully",
-    "groupQuestions": "Group questions retrieved successfully",
-    "review": "Exam review retrieved successfully",
-    "closeGroup": "Group closed successfully",
-    "answer": "Answer recorded successfully",
-    "submit": "Exam submitted successfully"
-  },
   "files": {
     "signed_url": "Signed URL generated successfully",
     "confirmed": "File upload confirmed successfully",
     "deleted": "File deleted successfully"
   },
-  "sections": {
-    "create": "Section created successfully",
-    "findAll": "Sections retrieved successfully",
-    "findOne": "Section retrieved successfully",
-    "update": "Section updated successfully",
-    "delete": "Section deleted successfully"
+  "categories": {
+    "created": "Category created successfully",
+    "updated": "Category updated successfully",
+    "deleted": "Category deleted successfully",
+    "list": "Categories retrieved successfully",
+    "detail": "Category details retrieved successfully",
+    "tree": "Category tree retrieved successfully"
   },
-  "results": {
-    "findOne": "Exam result retrieved successfully",
-    "findAll": "Results retrieved successfully",
-    "sectionResults": "Section results retrieved successfully",
-    "progress": "Progress retrieved successfully",
-    "sectionProgress": "Section progress retrieved successfully"
-  },
-  "leaderboard": {
-    "specialization": "Specialization leaderboard retrieved successfully",
-    "section": "Section leaderboard retrieved successfully",
-    "global": "Global leaderboard retrieved successfully",
-    "stats": "Leaderboard statistics retrieved successfully"
-  },
-  "admin": {
-    "dashboard": "Admin dashboard retrieved successfully"
-  },
-  "stats": {
-    "public": "Platform statistics retrieved successfully"
-  },
-  "contact": {
-    "sent": "Your message has been sent successfully"
-  },
-  "specializations": {
-    "create": "Specialization created successfully",
-    "findAll": "Specializations retrieved successfully",
-    "findOne": "Specialization retrieved successfully",
-    "update": "Specialization updated successfully",
-    "delete": "Specialization deleted successfully"
+  "products": {
+    "created": "Product created successfully",
+    "updated": "Product updated successfully",
+    "deleted": "Product deleted successfully",
+    "list": "Products retrieved successfully",
+    "detail": "Product details retrieved successfully",
+    "variant_created": "Variant added successfully",
+    "variant_updated": "Variant updated successfully",
+    "variant_deleted": "Variant deleted successfully",
+    "images_added": "Images added successfully",
+    "image_deleted": "Image deleted successfully"
   }
 }

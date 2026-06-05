@@ -1,0 +1,154 @@
+### Categories Controller Tests
+
+@baseUrl = http://localhost:5000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MzM3YmM0YS0wZDJmLTRiNzgtYTBkNC0zOTNkZjAwOWJlOTMiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzgwNjcyMDg0LCJleHAiOjE3ODA2NzI5ODR9.RKSj4O9fMD_nGiQOICERQOn9eNnxBMfEYj4zpLK_kfw
+
+
+### ─── إنشاء تصنيف رئيسي ─────────────────────────────────────
+
+### Create Category: Electronics
+POST {{baseUrl}}/categories
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "icon": "Laptop",
+  "color": "#2563eb",
+  "order": 1,
+  "translations": [
+    { "locale": "ar", "name": "إلكترونيات", "description": "كل ما يخص الأجهزة الإلكترونية" },
+    { "locale": "en", "name": "Electronics", "description": "All electronic devices" }
+  ]
+}
+
+### Create Category: Fashion
+POST {{baseUrl}}/categories
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "icon": "Shirt",
+  "color": "#db2777",
+  "order": 2,
+  "translations": [
+    { "locale": "ar", "name": "موضة", "description": "الأزياء والملابس" },
+    { "locale": "en", "name": "Fashion", "description": "Clothing and accessories" }
+  ]
+}
+
+### ─── إنشاء تصنيف فرعي ─────────────────────────────────────
+
+### Create Subcategory: Mobile Phones (parent: electronics)
+POST {{baseUrl}}/categories
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "parentId": "PUT_ELECTRONICS_ID_HERE",
+  "icon": "Smartphone",
+  "color": "#2563eb",
+  "order": 1,
+  "translations": [
+    { "locale": "ar", "name": "هواتف محمولة", "description": "جوالات وتبلت" },
+    { "locale": "en", "name": "Mobile Phones", "description": "Smartphones and tablets" }
+  ]
+}
+
+### ─── جلب التصنيفات مع Pagination ──────────────────────────
+
+### Get All Categories (page 1, default limit)
+GET {{baseUrl}}/categories
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+
+### Get All Categories (page 1, limit 5)
+GET {{baseUrl}}/categories?page=1&limit=5
+Authorization: Bearer {{accessToken}}
+Accept-Language: en
+
+### Get Categories with Search
+GET {{baseUrl}}/categories?search=إلكترون
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### Get Active Categories
+GET {{baseUrl}}/categories?isActive=true
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### Get Categories by Parent
+GET {{baseUrl}}/categories?parentId=PUT_PARENT_ID_HERE
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### ─── جلب تصنيف بواسطة Slug ────────────────────────────────
+
+### Get Category by Slug
+GET {{baseUrl}}/categories/slug/electronics
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### ─── جلب تصنيف بواسطة ID ──────────────────────────────────
+
+### Get Category by ID
+GET {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE
+Authorization: Bearer {{accessToken}}
+Accept-Language: en
+
+### ─── تعديل تصنيف ──────────────────────────────────────────
+
+### Update Category
+PATCH {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "color": "#16a34a",
+  "translations": [
+    { "locale": "ar", "name": "إلكترونيات محدثة", "description": "وصف محدث" },
+    { "locale": "en", "name": "Updated Electronics", "description": "Updated description" }
+  ]
+}
+
+### ─── ربط صورة بالتصنيف ────────────────────────────────────
+
+### Attach Image to Category
+PATCH {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE/image
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "fileId": "PUT_FILE_ID_HERE"
+}
+
+### ─── إلغاء تنشيط تصنيف ────────────────────────────────────
+
+### Deactivate Category
+PATCH {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE/deactivate
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+### ─── إعادة ترتيب تصنيف ────────────────────────────────────
+
+### Reorder Category
+PATCH {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE/reorder
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "order": 10
+}
+
+### ─── حذف تصنيف ────────────────────────────────────────────
+
+### Delete Category (will fail if has children or products)
+DELETE {{baseUrl}}/categories/PUT_CATEGORY_ID_HERE
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar

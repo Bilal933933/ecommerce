@@ -153,6 +153,55 @@
   "date": {
     "invalid": "التاريخ غير صالح"
   },
+  "product": {
+    "type_must_be_enum": "نوع المنتج يجب أن يكون DIGITAL أو PHYSICAL",
+    "status_must_be_enum": "حالة المنتج يجب أن تكون DRAFT أو PUBLISHED أو ARCHIVED",
+    "category_id_must_be_uuid": "معرف التصنيف يجب أن يكون UUID صحيحاً",
+    "video_url_must_be_string": "رابط الفيديو يجب أن يكون نصاً",
+    "translations_must_be_array": "الترجمات يجب أن تكون مصفوفة",
+    "attributes_must_be_array": "الخصائص يجب أن تكون مصفوفة",
+    "variants_must_be_array": "الأنواع يجب أن تكون مصفوفة",
+    "images_must_be_array": "الصور يجب أن تكون مصفوفة",
+    "image_id_must_be_uuid": "معرف ملف الصورة يجب أن يكون UUID صحيحاً",
+    "translation": {
+      "invalid_locale": "لغة الترجمة يجب أن تكون ar أو en",
+      "name_must_be_string": "اسم الترجمة يجب أن يكون نصاً",
+      "name_too_long": "اسم الترجمة يجب ألا يزيد عن 200 حرف",
+      "description_must_be_string": "الوصف يجب أن يكون نصاً",
+      "description_too_long": "الوصف يجب ألا يزيد عن 5000 حرف"
+    },
+    "attribute": {
+      "translations_must_be_array": "ترجمات الخاصية يجب أن تكون مصفوفة",
+      "values_must_be_array": "قيم الخاصية يجب أن تكون مصفوفة",
+      "value_translation": {
+        "name_must_be_string": "اسم قيمة الخاصية يجب أن يكون نصاً",
+        "invalid_locale": "لغة قيمة الخاصية يجب أن تكون ar أو en"
+      }
+    },
+    "variant": {
+      "sku_must_be_string": "SKU يجب أن يكون نصاً",
+      "price_must_be_number": "السعر يجب أن يكون رقماً",
+      "price_min": "السعر يجب أن يكون 0 على الأقل",
+      "compare_price_must_be_number": "السعر المقارن يجب أن يكون رقماً",
+      "compare_price_min": "السعر المقارن يجب أن يكون 0 على الأقل",
+      "stock_must_be_number": "المخزون يجب أن يكون رقماً",
+      "stock_min": "المخزون يجب أن يكون 0 على الأقل",
+      "is_default_must_be_bool": "الافتراضي يجب أن يكون صح أو خطأ",
+      "attribute_value_ids_must_be_array": "معرفات قيم الخصائص يجب أن تكون مصفوفة",
+      "attribute_value_id_must_be_uuid": "كل معرف قيمة خاصية يجب أن يكون UUID صحيحاً"
+    },
+    "filter": {
+      "page_must_be_int": "رقم الصفحة يجب أن يكون عدداً صحيحاً",
+      "page_min": "رقم الصفحة يجب أن يكون 1 على الأقل",
+      "limit_must_be_int": "الحد الأقصى يجب أن يكون عدداً صحيحاً",
+      "limit_min": "الحد الأقصى يجب أن يكون 1 على الأقل",
+      "limit_max": "الحد الأقصى يجب ألا يزيد عن 100",
+      "search_must_be_string": "البحث يجب أن يكون نصاً",
+      "invalid_type": "نوع المنتج غير صالح للفلترة",
+      "invalid_status": "حالة المنتج غير صالحة للفلترة",
+      "category_id_must_be_uuid": "معرف التصنيف للفلترة يجب أن يكون UUID صحيحاً"
+    }
+  },
   "contact": {
     "name": {
       "string": "الاسم يجب أن يكون نصاً",

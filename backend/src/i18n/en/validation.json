@@ -153,6 +153,55 @@
   "date": {
     "invalid": "Date is not valid"
   },
+  "product": {
+    "type_must_be_enum": "Product type must be DIGITAL or PHYSICAL",
+    "status_must_be_enum": "Product status must be DRAFT, PUBLISHED, or ARCHIVED",
+    "category_id_must_be_uuid": "Category ID must be a valid UUID",
+    "video_url_must_be_string": "Video URL must be a string",
+    "translations_must_be_array": "Translations must be an array",
+    "attributes_must_be_array": "Attributes must be an array",
+    "variants_must_be_array": "Variants must be an array",
+    "images_must_be_array": "Images must be an array",
+    "image_id_must_be_uuid": "Image file ID must be a valid UUID",
+    "translation": {
+      "invalid_locale": "Translation locale must be ar or en",
+      "name_must_be_string": "Translation name must be a string",
+      "name_too_long": "Translation name must be at most 200 characters",
+      "description_must_be_string": "Description must be a string",
+      "description_too_long": "Description must be at most 5000 characters"
+    },
+    "attribute": {
+      "translations_must_be_array": "Attribute translations must be an array",
+      "values_must_be_array": "Attribute values must be an array",
+      "value_translation": {
+        "name_must_be_string": "Attribute value name must be a string",
+        "invalid_locale": "Attribute value locale must be ar or en"
+      }
+    },
+    "variant": {
+      "sku_must_be_string": "SKU must be a string",
+      "price_must_be_number": "Price must be a number",
+      "price_min": "Price must be at least 0",
+      "compare_price_must_be_number": "Compare price must be a number",
+      "compare_price_min": "Compare price must be at least 0",
+      "stock_must_be_number": "Stock must be a number",
+      "stock_min": "Stock must be at least 0",
+      "is_default_must_be_bool": "Is default must be true or false",
+      "attribute_value_ids_must_be_array": "Attribute value IDs must be an array",
+      "attribute_value_id_must_be_uuid": "Each attribute value ID must be a valid UUID"
+    },
+    "filter": {
+      "page_must_be_int": "Page must be an integer",
+      "page_min": "Page must be at least 1",
+      "limit_must_be_int": "Limit must be an integer",
+      "limit_min": "Limit must be at least 1",
+      "limit_max": "Limit must be at most 100",
+      "search_must_be_string": "Search must be a string",
+      "invalid_type": "Invalid product type filter",
+      "invalid_status": "Invalid product status filter",
+      "category_id_must_be_uuid": "Category ID must be a valid UUID"
+    }
+  },
   "contact": {
     "name": {
       "string": "Name must be a string",

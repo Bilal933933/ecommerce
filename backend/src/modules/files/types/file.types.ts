@@ -4,14 +4,7 @@ export type FileType = 'IMAGE' | 'VIDEO' | 'AUDIO' | 'DOCUMENT';
 
 export type FileStatus = 'PENDING' | 'ACTIVE' | 'ORPHAN';
 
-export type RelatedType =
-  | 'grade'
-  | 'level'
-  | 'subject'
-  | 'course'
-  | 'lesson'
-  | 'lesson_item'
-  | 'exam';
+export type RelatedType = 'category';
 
 export interface AppFile {
   id: string;

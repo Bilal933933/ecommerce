@@ -1,9 +1,14 @@
 import prisma from './connect';
+import { seedCategories } from './seeds/categories.seed';
+import { seedProducts } from './seeds/products.seed';
 
 async function main() {
   console.log('🌱 بدء عملية البذر (Seeding)...\n');
 
-  console.log('✅ اكتملت عملية البذر بنجاح!');
+  await seedCategories();
+  await seedProducts();
+
+  console.log('\n✅ اكتملت عملية البذر بنجاح!');
 }
 
 main()

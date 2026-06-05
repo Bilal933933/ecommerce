@@ -16,38 +16,9 @@
     "email_already_verified": "Email is already verified",
     "same_password": "New password must be different from the current password"
   },
-  "level": {
-    "not_found": "Level not found",
-    "order_taken": "Level order is already taken",
-    "has_grades": "Cannot delete level because it has grades"
-  },
-  "question": {
-    "not_found": "Question not found",
-    "section_or_specialization_required": "Either section or specialization must be specified",
-    "section_and_specialization_conflict": "Cannot specify both section and specialization",
-    "one_correct_option_required": "Question must have exactly one correct option"
-  },
   "users": {
     "not_found": "User not found",
     "email_taken": "Email is already in use"
-  },
-  "exam": {
-    "specialization_required": "You must have a specialization to create a simulation exam",
-    "no_active_sections": "No active sections available",
-    "no_active_questions": "No active questions available for the exam",
-    "section_or_specialization_required": "Either section or specialization must be specified for the exam",
-    "section_and_specialization_conflict": "Cannot specify both section and specialization for the exam",
-    "section_not_found": "Section not found or not active",
-    "not_found": "Exam not found",
-    "already_completed": "This exam has already been completed",
-    "question_not_in_exam": "Question is not in this exam",
-    "answer_already_submitted": "An answer for this question has already been submitted",
-    "option_not_in_question": "The selected option does not belong to this question",
-    "group_not_found": "Group not found",
-    "group_already_locked": "Group is already locked",
-    "previous_group_not_locked": "Previous groups must be completed first",
-    "group_is_locked": "Cannot modify answer because the group is locked",
-    "all_groups_must_be_locked": "All groups must be completed before submitting the exam"
   },
   "file": {
     "not_found": "File not found",
@@ -56,16 +27,21 @@
     "upload_url_failed": "Failed to generate upload URL",
     "avatar_not_image": "Avatar file must be an image"
   },
-  "progress": {
-    "not_found": "No progress data found"
+    "categories": {
+    "not_found": "Category not found",
+    "slug_exists": "Slug already exists",
+    "parent_not_found": "Parent category not found",
+    "has_children": "Cannot delete category with child categories",
+    "has_products": "Cannot delete category with associated products",
+    "cannot_be_own_parent": "Category cannot be its own parent",
+    "circular_reference": "Circular reference detected in category hierarchy",
+    "missing_translations": "Missing translations for locales: {locales}"
   },
-  "results": {
-    "page_out_of_range": "Requested page exceeds the total number of pages"
-  },
-  "sections": {
-    "not_found": "Section not found"
-  },
-  "specializations": {
-    "not_found": "Specialization not found"
+  "products": {
+    "not_found": "Product not found",
+    "variant_not_found": "Variant not found",
+    "slug_exists": "Product slug already exists",
+    "has_orders": "Cannot delete product with existing orders",
+    "no_files_provided": "Please provide at least one file"
   }
 }

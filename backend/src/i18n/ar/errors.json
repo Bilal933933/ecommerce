@@ -16,38 +16,9 @@
     "email_already_verified": "البريد الإلكتروني مؤكد بالفعل",
     "same_password": "كلمة المرور الجديدة يجب أن تكون مختلفة عن السابقة"
   },
-  "level": {
-    "not_found": "المرحلة الدراسية غير موجودة",
-    "order_taken": "ترتيب المرحلة مستخدم مسبقاً",
-    "has_grades": "لا يمكن حذف المرحلة لأنها تحتوي على صفوف دراسية"
-  },
-  "question": {
-    "not_found": "السؤال غير موجود",
-    "section_or_specialization_required": "يجب تحديد إما محور أو تخصص للسؤال",
-    "section_and_specialization_conflict": "لا يمكن تحديد محور وتخصص معاً للسؤال",
-    "one_correct_option_required": "يجب أن يحتوي السؤال على خيار صحيح واحد فقط"
-  },
   "users": {
     "not_found": "المستخدم غير موجود",
     "email_taken": "البريد الإلكتروني مستخدم بالفعل"
-  },
-  "exam": {
-    "specialization_required": "يجب أن يكون لديك تخصص لإنشاء اختبار محاكاة",
-    "no_active_sections": "لا توجد محاور نشطة متاحة",
-    "no_active_questions": "لا توجد أسئلة نشطة متاحة للاختبار",
-    "section_or_specialization_required": "يجب تحديد إما محور أو تخصص للاختبار",
-    "section_and_specialization_conflict": "لا يمكن تحديد محور وتخصص معاً للاختبار",
-    "section_not_found": "المحور المطلوب غير موجود أو غير نشط",
-    "not_found": "الاختبار غير موجود",
-    "already_completed": "تم إكمال هذا الاختبار مسبقاً",
-    "question_not_in_exam": "السؤال غير موجود في هذا الاختبار",
-    "answer_already_submitted": "تم إرسال إجابة هذا السؤال مسبقاً",
-    "option_not_in_question": "الخيار المحدد لا ينتمي لهذا السؤال",
-    "group_not_found": "المجموعة غير موجودة",
-    "group_already_locked": "المجموعة مغلقة مسبقاً",
-    "previous_group_not_locked": "يجب إكمال المجموعات السابقة أولاً",
-    "group_is_locked": "لا يمكن تعديل الإجابة لأن المجموعة مغلقة",
-    "all_groups_must_be_locked": "يجب إكمال جميع المجموعات قبل تسليم الاختبار"
   },
   "file": {
     "not_found": "الملف غير موجود",
@@ -56,16 +27,21 @@
     "upload_url_failed": "فشل توليد رابط الرفع",
     "avatar_not_image": "يجب أن يكون ملف الصورة من نوع صورة"
   },
-  "progress": {
-    "not_found": "لا توجد بيانات تقدم"
+    "categories": {
+    "not_found": "التصنيف غير موجود",
+    "slug_exists": "الرابط المختصر (slug) موجود بالفعل",
+    "parent_not_found": "التصنيف الأب غير موجود",
+    "has_children": "لا يمكن حذف تصنيف يحتوي على تصنيفات فرعية",
+    "has_products": "لا يمكن حذف تصنيف يحتوي على منتجات",
+    "cannot_be_own_parent": "لا يمكن جعل التصنيف أباً لنفسه",
+    "circular_reference": "لا يمكن إنشاء مرجع دائري في التصنيفات",
+    "missing_translations": "الترجمات مفقودة للغات: {locales}"
   },
-  "results": {
-    "page_out_of_range": "الصفحة المطلوبة تتجاوز عدد الصفحات المتاحة"
-  },
-  "sections": {
-    "not_found": "المحور غير موجود"
-  },
-  "specializations": {
-    "not_found": "التخصص غير موجود"
+  "products": {
+    "not_found": "المنتج غير موجود",
+    "variant_not_found": "النوع (variant) غير موجود",
+    "slug_exists": "الرابط المختصر (slug) للمنتج موجود بالفعل",
+    "has_orders": "لا يمكن حذف منتج عليه طلبات",
+    "no_files_provided": "يرجى توفير ملفات واحدة على الأقل"
   }
 }

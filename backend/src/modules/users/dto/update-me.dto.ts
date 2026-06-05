@@ -49,5 +49,4 @@ export class UpdateMeDto {
   @IsOptional()
   @IsDateString({}, { message: 'errors.validation.date.invalid' })
   birthDate?: string | null;
-
 }

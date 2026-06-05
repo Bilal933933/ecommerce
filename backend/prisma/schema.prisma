@@ -379,6 +379,7 @@ model ProductVariant {
   comparePrice Decimal? @db.Decimal(10, 2)
   stock        Int      @default(0)
   isDefault    Boolean  @default(false)
+  isDeleted    Boolean  @default(false)
 
   // للمنتج الرقمي
   fileUrl      String?
@@ -393,6 +394,7 @@ model ProductVariant {
 
   @@index([productId])
   @@index([sku])
+  @@index([isDeleted])
   @@map("product_variants")
 }
 

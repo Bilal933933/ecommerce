@@ -1,0 +1,158 @@
+### Products Controller Tests
+
+@baseUrl = http://localhost:5000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MzM3YmM0YS0wZDJmLTRiNzgtYTBkNC0zOTNkZjAwOWJlOTMiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgwNjc0NTM1LCJleHAiOjE3ODA2NzU0MzV9.Nz_DCXPjATgZH7QdmATZcyrJZ-9gyHlhaxyTThgbW5Q
+### ─── إنشاء منتج ────────────────────────────────────────────
+
+### Create Product with attributes and variants
+POST {{baseUrl}}/products
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "type": "PHYSICAL",
+  "categoryId": "electronics",
+  "translations": [
+    { "locale": "ar", "name": "هاتف ذكي", "description": "هاتف ذكي بشاشة OLED" },
+    { "locale": "en", "name": "Smart Phone", "description": "Smartphone with OLED display" }
+  ],
+  "attributes": [
+    {
+      "order": 1,
+      "translations": [
+        { "locale": "ar", "name": "اللون" },
+        { "locale": "en", "name": "Color" }
+      ],
+      "values": [
+        {
+          "order": 1,
+          "translations": [
+            { "locale": "ar", "name": "أسود" },
+            { "locale": "en", "name": "Black" }
+          ]
+        },
+        {
+          "order": 2,
+          "translations": [
+            { "locale": "ar", "name": "أبيض" },
+            { "locale": "en", "name": "White" }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "translations": [
+        { "locale": "ar", "name": "السعة" },
+        { "locale": "en", "name": "Storage" }
+      ],
+      "values": [
+        {
+          "order": 1,
+          "translations": [
+            { "locale": "ar", "name": "128 جيجابايت" },
+            { "locale": "en", "name": "128GB" }
+          ]
+        },
+        {
+          "order": 2,
+          "translations": [
+            { "locale": "ar", "name": "256 جيجابايت" },
+            { "locale": "en", "name": "256GB" }
+          ]
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "sku": "PHONE-BLACK-128",
+      "price": 1999,
+      "comparePrice": 2299,
+      "stock": 50,
+      "isDefault": true,
+      "attributeValueIds": []
+    },
+    {
+      "sku": "PHONE-WHITE-256",
+      "price": 2499,
+      "stock": 30,
+      "attributeValueIds": []
+    }
+  ]
+}
+
+### ─── جلب المنتجات ──────────────────────────────────────────
+
+### Get All Products (paginated)
+GET {{baseUrl}}/products?page=1&limit=10
+Accept-Language: ar
+
+### Get Products by Category
+GET {{baseUrl}}/products?categoryId=PUT_CATEGORY_ID_HERE
+Accept-Language: ar
+
+### Search Products
+GET {{baseUrl}}/products?search=هاتف
+Accept-Language: ar
+
+### ─── جلب منتج بالـ slug ───────────────────────────────────
+
+### Get Product by Slug
+GET {{baseUrl}}/products/smart-phone
+Accept-Language: ar
+
+### ─── تعديل منتج ──────────────────────────────────────────
+
+### Update Product Status
+PATCH {{baseUrl}}/products/PUT_PRODUCT_ID_HERE/status
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "status": "PUBLISHED"
+}
+
+### ─── إضافة Variant ──────────────────────────────────────
+
+### Add Variant
+POST {{baseUrl}}/products/PUT_PRODUCT_ID_HERE/variants
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "sku": "PHONE-BLACK-256",
+  "price": 2299,
+  "stock": 20,
+  "attributeValueIds": []
+}
+
+### ─── حذف Variant ────────────────────────────────────────
+
+### Delete Variant
+DELETE {{baseUrl}}/products/PUT_PRODUCT_ID_HERE/variants/PUT_VARIANT_ID_HERE
+Authorization: Bearer {{accessToken}}
+
+### ─── إضافة صور للمنتج ───────────────────────────────────
+
+### Add Images
+POST {{baseUrl}}/products/PUT_PRODUCT_ID_HERE/images
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "fileIds": ["PUT_FILE_ID_HERE"]
+}
+
+### ─── حذف صورة منتج ──────────────────────────────────────
+
+### Delete Image
+DELETE {{baseUrl}}/products/PUT_PRODUCT_ID_HERE/images/PUT_IMAGE_ID_HERE
+Authorization: Bearer {{accessToken}}
+
+### ─── حذف منتج ────────────────────────────────────────────
+
+### Delete Product
+DELETE {{baseUrl}}/products/PUT_PRODUCT_ID_HERE
+Authorization: Bearer {{accessToken}}

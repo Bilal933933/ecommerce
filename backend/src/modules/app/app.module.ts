@@ -26,6 +26,8 @@ import { MailModule } from '../mail/mail.module';
 import { FilesModule } from '../files/files.module';
 import { AdminModule } from '../admin/admin.module';
 import { ContactModule } from '../contact/contact.module';
+import { CategoriesModule } from '../Categories/categories.module';
+import { ProductsModule } from '../products/products.module';
 
 @Module({
   imports: [
@@ -38,6 +40,8 @@ import { ContactModule } from '../contact/contact.module';
     FilesModule,
     AdminModule,
     ContactModule,
+    CategoriesModule,
+    ProductsModule,
     I18nModule.forRoot({
       fallbackLanguage: 'ar',
       loaderOptions: {
