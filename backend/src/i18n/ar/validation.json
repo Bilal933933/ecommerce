@@ -173,6 +173,10 @@
     "attribute": {
       "translations_must_be_array": "ترجمات الخاصية يجب أن تكون مصفوفة",
       "values_must_be_array": "قيم الخاصية يجب أن تكون مصفوفة",
+      "translation": {
+        "name_must_be_string": "اسم الخاصية يجب أن يكون نصاً",
+        "invalid_locale": "لغة الخاصية يجب أن تكون ar أو en"
+      },
       "value_translation": {
         "name_must_be_string": "اسم قيمة الخاصية يجب أن يكون نصاً",
         "invalid_locale": "لغة قيمة الخاصية يجب أن تكون ar أو en"
@@ -201,6 +205,12 @@
       "invalid_status": "حالة المنتج غير صالحة للفلترة",
       "category_id_must_be_uuid": "معرف التصنيف للفلترة يجب أن يكون UUID صحيحاً"
     }
+  },
+  "cart": {
+    "variant_id_must_be_uuid": "معرف النوع (variant) يجب أن يكون UUID صحيحاً",
+    "quantity_must_be_integer": "الكمية يجب أن تكون عدداً صحيحاً",
+    "quantity_min": "الكمية يجب أن تكون 1 على الأقل",
+    "quantity_max": "الكمية يجب ألا تتجاوز 10"
   },
   "contact": {
     "name": {

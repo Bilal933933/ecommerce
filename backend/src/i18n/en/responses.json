@@ -51,6 +51,13 @@
     "detail": "Category details retrieved successfully",
     "tree": "Category tree retrieved successfully"
   },
+  "cart": {
+    "retrieved": "Cart retrieved successfully",
+    "item_added": "Item added to cart successfully",
+    "item_updated": "Item quantity updated successfully",
+    "item_removed": "Item removed from cart successfully",
+    "cleared": "Cart cleared successfully"
+  },
   "products": {
     "created": "Product created successfully",
     "updated": "Product updated successfully",

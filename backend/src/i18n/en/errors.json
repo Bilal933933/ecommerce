@@ -43,5 +43,13 @@
     "slug_exists": "Product slug already exists",
     "has_orders": "Cannot delete product with existing orders",
     "no_files_provided": "Please provide at least one file"
+  },
+  "cart": {
+    "not_found": "Cart not found",
+    "item_not_found": "Item not found in cart",
+    "variant_not_found": "Variant not found",
+    "variant_deleted": "Variant is deleted",
+    "insufficient_stock": "Requested quantity ({quantity}) exceeds available stock ({stock})",
+    "max_quantity_exceeded": "Cannot exceed maximum {max} units per item"
   }
 }

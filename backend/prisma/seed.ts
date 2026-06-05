@@ -1,12 +1,14 @@
 import prisma from './connect';
 import { seedCategories } from './seeds/categories.seed';
 import { seedProducts } from './seeds/products.seed';
+import { seedCart } from './seeds/cart.seed';
 
 async function main() {
   console.log('🌱 بدء عملية البذر (Seeding)...\n');
 
   await seedCategories();
   await seedProducts();
+  await seedCart();
 
   console.log('\n✅ اكتملت عملية البذر بنجاح!');
 }

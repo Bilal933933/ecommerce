@@ -1,0 +1,105 @@
+### Cart Controller Tests
+
+@baseUrl = http://localhost:5000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MzM3YmM0YS0wZDJmLTRiNzgtYTBkNC0zOTNkZjAwOWJlOTMiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzgwNjc2OTk2LCJleHAiOjE3ODA2Nzc4OTZ9.ysbo945BeGrFkOOVF9chPUekRQ-wJfQj5fBfE5D2rAg
+
+@variantId = PUT_A_VALID_VARIANT_ID_HERE
+
+
+### ─── السلة ──────────────────────────────────────────────
+
+### Get Cart (جلب السلة — تنشئ تلقائياً لو مش موجودة)
+GET {{baseUrl}}/cart
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+
+### Add Item to Cart (إضافة عنصر)
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "variantId": "{{variantId}}",
+  "quantity": 2
+}
+
+
+### Add Same Variant Again (تزيد الكمية)
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "variantId": "{{variantId}}",
+  "quantity": 1
+}
+
+
+### Exceed Max Quantity (تجاوز 10)
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "variantId": "{{variantId}}",
+  "quantity": 11
+}
+
+
+### Update Item Quantity (تعديل الكمية)
+@itemId = PUT_CART_ITEM_ID_HERE
+PATCH {{baseUrl}}/cart/items/{{itemId}}
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+Content-Type: application/json
+
+{
+  "quantity": 3
+}
+
+
+### Remove Item (حذف عنصر)
+DELETE {{baseUrl}}/cart/items/{{itemId}}
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+
+### Clear Cart (تفريغ السلة)
+DELETE {{baseUrl}}/cart
+Authorization: Bearer {{accessToken}}
+Accept-Language: ar
+
+
+### ─── أخطاء ──────────────────────────────────────────────
+
+### Invalid Variant ID (معرف غير صحيح)
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{accessToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "variantId": "00000000-0000-0000-0000-000000000000",
+  "quantity": 1
+}
+
+
+### Missing Token (بدون توكن)
+GET {{baseUrl}}/cart
+Accept-Language: ar
+
+
+### Invalid Quantity (كمية غير صحيحة)
+POST {{baseUrl}}/cart/items
+Authorization: Bearer {{accessToken}}
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "variantId": "{{variantId}}",
+  "quantity": 0
+}

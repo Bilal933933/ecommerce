@@ -28,6 +28,7 @@ import { AdminModule } from '../admin/admin.module';
 import { ContactModule } from '../contact/contact.module';
 import { CategoriesModule } from '../Categories/categories.module';
 import { ProductsModule } from '../products/products.module';
+import { CartModule } from '../cart/cart.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { ProductsModule } from '../products/products.module';
     ContactModule,
     CategoriesModule,
     ProductsModule,
+    CartModule,
     I18nModule.forRoot({
       fallbackLanguage: 'ar',
       loaderOptions: {

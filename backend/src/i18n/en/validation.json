@@ -173,6 +173,10 @@
     "attribute": {
       "translations_must_be_array": "Attribute translations must be an array",
       "values_must_be_array": "Attribute values must be an array",
+      "translation": {
+        "name_must_be_string": "Attribute name must be a string",
+        "invalid_locale": "Attribute locale must be ar or en"
+      },
       "value_translation": {
         "name_must_be_string": "Attribute value name must be a string",
         "invalid_locale": "Attribute value locale must be ar or en"
@@ -201,6 +205,12 @@
       "invalid_status": "Invalid product status filter",
       "category_id_must_be_uuid": "Category ID must be a valid UUID"
     }
+  },
+  "cart": {
+    "variant_id_must_be_uuid": "Variant ID must be a valid UUID",
+    "quantity_must_be_integer": "Quantity must be an integer",
+    "quantity_min": "Quantity must be at least 1",
+    "quantity_max": "Quantity must not exceed 10"
   },
   "contact": {
     "name": {

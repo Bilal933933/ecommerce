@@ -43,5 +43,13 @@
     "slug_exists": "الرابط المختصر (slug) للمنتج موجود بالفعل",
     "has_orders": "لا يمكن حذف منتج عليه طلبات",
     "no_files_provided": "يرجى توفير ملفات واحدة على الأقل"
+  },
+  "cart": {
+    "not_found": "السلة غير موجودة",
+    "item_not_found": "العنصر غير موجود في السلة",
+    "variant_not_found": "النوع (variant) غير موجود",
+    "variant_deleted": "النوع (variant) محذوف",
+    "insufficient_stock": "الكمية المطلوبة ({quantity}) تتجاوز المخزون المتوفر ({stock})",
+    "max_quantity_exceeded": "لا يمكن تجاوز الحد الأقصى {max} قطع لكل عنصر"
   }
 }
